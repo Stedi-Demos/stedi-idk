@@ -1,7 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import cp from "node:child_process";
-import packageJson from "../../package.json" assert { type: "json" };
+
+interface PackageType {
+  devDependencies: Record<string, string>;
+  prettier: Record<string, unknown>;
+  ava: Record<string, unknown>;
+  volta: Record<string, unknown>;
+}
 
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 
@@ -12,14 +18,24 @@ export const desc = "Creates new IDK project at path";
 export const builder = {};
 
 export const handler = (argv: { repoPath: string }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const packageJson = JSON.parse(
+    fs.readFileSync("./package.json", "utf8")
+  ) as PackageType;
+
   const pathExists = fs.existsSync(argv.repoPath);
 
-  if (!pathExists) fs.mkdirSync(argv.repoPath);
+  if (!pathExists) {
+    fs.mkdirSync(argv.repoPath);
+    fs.mkdirSync(path.join(argv.repoPath, "src"));
+    fs.mkdirSync(path.join(argv.repoPath, "src", "functions"));
+  }
 
   const pkg = {
     name: "my-idk",
     description: "Stedi Integration Development Kit",
     version: "0.0.1",
+    type: "module",
     devDependencies: {
       "@ava/typescript": packageJson.devDependencies["@ava/typescript"],
       "@stedi/idk": "file:../stedi-idk",
@@ -39,9 +55,9 @@ export const handler = (argv: { repoPath: string }) => {
     },
     prettier: packageJson.prettier,
     ava: packageJson.ava,
-    volta: {
-      node: packageJson.volta.node,
-      npm: packageJson.volta.npm,
+    volta: packageJson.volta,
+    scripts: {
+      test: "ava",
     },
   };
   console.log(pkg);
@@ -64,10 +80,9 @@ export const handler = (argv: { repoPath: string }) => {
     JSON.stringify(pkg, null, 2)
   );
 
-  fs.copyFileSync(
-    "./tsconfig.json",
-    path.join(projectBasePath, "tsconfig.json")
-  );
+  ["tsconfig.json", "src/fetch.d.ts"].forEach((file) => {
+    fs.copyFileSync(`./${file}`, path.join(projectBasePath, file));
+  });
 
   cp.spawnSync(npm, ["install"], {
     cwd: projectBasePath,

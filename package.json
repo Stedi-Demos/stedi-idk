@@ -4,7 +4,7 @@
   "description": "Stedi Integration Development Kit (IDK)",
   "type": "module",
   "scripts": {
-    "build": "tsc && chmod +x dist/src/index.js",
+    "build": "tsc && chmod +x dist/cli.js",
     "test": "ava",
     "coverage": "c8 node ./node_modules/.bin/ava",
     "lint": "npx eslint --fix \"src/**/*.ts\""
@@ -12,14 +12,25 @@
   "files": [
     "dist/**/*"
   ],
+  "types": "./dist/index.d.ts",
   "source": "src/index.ts",
-  "main": "./dist/src/index.js",
-  "exports": {
-    ".": "./dist/src/index.js",
-    "./schemas": "./dist/src/schemas/index.js"
-  },
+  "main": "./dist/index.js",
   "bin": {
-    "stedi-idk": "./dist/src/index.js"
+    "stedi-idk": "./dist/cli.js"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./testing": "./dist/testing/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index"
+      ],
+      "testing": [
+        "./dist/testing/index"
+      ]
+    }
   },
   "author": "",
   "license": "ISC",
