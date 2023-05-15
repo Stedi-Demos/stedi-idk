@@ -1,10 +1,10 @@
 {
-  "name": "@stedi/idk",
+  "name": "@stedi/integrations-sdk",
   "version": "0.1.0",
-  "description": "Stedi Integration Development Kit (IDK)",
+  "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
-    "build": "tsc && chmod +x dist/cli.js",
+    "build": "tsc",
     "test": "ava",
     "coverage": "c8 node ./node_modules/.bin/ava",
     "lint": "npx eslint --fix \"src/**/*.ts\""
