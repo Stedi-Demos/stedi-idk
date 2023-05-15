@@ -1,2 +1,15 @@
+import { NodeHttpHandler } from "@aws-sdk/node-http-handler";
+
+export const DEFAULT_SDK_CLIENT_PROPS = {
+  apiKey: process.env["STEDI_API_KEY"],
+  region: "us",
+  maxAttempts: 5,
+  requestHandler: new NodeHttpHandler({
+    connectionTimeout: 5_000,
+  }),
+};
+
+export const maxWaitTime = 600;
+
 export const FUNCTION_TEMPLATES_REPO_URL =
   "https://github.com/Stedi-Demos/function-templates/tree/idk/src/functions";

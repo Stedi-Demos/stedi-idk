@@ -84,6 +84,8 @@ export const handler = (argv: { repoPath: string }) => {
     fs.copyFileSync(`./${file}`, path.join(projectBasePath, file));
   });
 
+  fs.copyFileSync(`./.env.example`, path.join(projectBasePath, ".env"));
+
   cp.spawnSync(npm, ["install"], {
     cwd: projectBasePath,
     stdio: [0, 1, 2],
