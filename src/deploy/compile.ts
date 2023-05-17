@@ -46,7 +46,7 @@ const pkg = {
   description:
     "This package contains the dependencies needed at runtime, that cannot be bundled",
   dependencies: {
-    "@stedi/idk": "file:/Users/bdq/dev/stedi/stedi-idk",
+    "@stedi/integrations-sdk": "*",
   },
 };
 

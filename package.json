@@ -4,7 +4,7 @@
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x ./dist/cli.js",
     "test": "ava",
     "coverage": "c8 node ./node_modules/.bin/ava",
     "lint": "npx eslint --fix \"src/**/*.ts\""
@@ -16,7 +16,7 @@
   "source": "src/index.ts",
   "main": "./dist/index.js",
   "bin": {
-    "stedi-idk": "./dist/cli.js"
+    "stedi-integrations": "./dist/cli.js"
   },
   "exports": {
     ".": "./dist/index.js",
@@ -42,12 +42,12 @@
     "@stedi/sdk-client-buckets": "^0.2.10",
     "@stedi/sdk-client-edi-translate": "^0.2.10",
     "@stedi/sdk-client-events": "^0.2.10",
-    "@stedi/sdk-client-sftp": "^0.2.10",
     "@stedi/sdk-client-functions": "^0.2.10",
     "@stedi/sdk-client-guides": "^0.2.10",
     "@stedi/sdk-client-identity": "^0.2.10",
     "@stedi/sdk-client-mappings": "^0.2.10",
     "@stedi/sdk-client-partners": "^0.2.10",
+    "@stedi/sdk-client-sftp": "^0.2.10",
     "@stedi/sdk-client-stash": "^0.2.10",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.15.11",

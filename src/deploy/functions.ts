@@ -10,44 +10,46 @@ import {
 } from "@stedi/sdk-client-functions";
 import { bucketsClient } from "../clients/buckets.js";
 import { functionsClient } from "../clients/functions.js";
-import { requiredEnvVar } from "../common/environment.js";
 import {
   CreateEventToFunctionBindingCommand,
   UpdateEventToFunctionBindingCommand,
 } from "@stedi/sdk-client-events";
 import { eventsClient } from "../clients/events.js";
 
+const sharedPackageBucketName =
+  "cloud-service-prod-cloudassetscb762b94-1s0pscijv42io";
+
 const functions = functionsClient();
 const buckets = bucketsClient();
 const events = eventsClient();
 
+const buildBucketKey = (functionName: string, stediAccountId: string): string =>
+  `deployments/${stediAccountId}/${functionName}-${new Date()
+    .getTime()
+    .toString()}.zip`;
+
 export const createFunction = async (
   functionName: string,
   functionPackage: Uint8Array,
+  stediAccountId: string,
   environmentVariables?: Record<string, string>
 ): Promise<CreateFunctionCommandOutput> => {
-  const bucketName = requiredEnvVar("EXECUTIONS_BUCKET_NAME");
-  const key = `functionPackages/${functionName}/${new Date()
-    .getTime()
-    .toString()}-package.zip`;
+  const key = buildBucketKey(functionName, stediAccountId);
 
   await buckets.send(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     new PutObjectCommand({
-      bucketName,
+      bucketName: sharedPackageBucketName,
       key,
       body: functionPackage,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    }) as any //SDK mismatches
+    })
   );
 
   return functions.send(
     new CreateFunctionCommand({
       functionName,
-      packageBucket: bucketName,
+      packageBucket: sharedPackageBucketName,
       packageKey: key,
       environmentVariables,
-
       timeout: 900,
     })
   );
@@ -56,27 +58,24 @@ export const createFunction = async (
 export const updateFunction = async (
   functionName: string,
   functionPackage: Uint8Array,
+  stediAccountId: string,
   environmentVariables?: Record<string, string>
 ): Promise<UpdateFunctionCommandOutput> => {
-  const bucketName = requiredEnvVar("EXECUTIONS_BUCKET_NAME");
-  const key = `functionPackages/${functionName}/${new Date()
-    .getTime()
-    .toString()}-package.zip`;
-
-  await buckets.send(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const key = buildBucketKey(functionName, stediAccountId);
+  console.log({ key });
+  const x = await buckets.send(
     new PutObjectCommand({
-      bucketName,
+      bucketName: sharedPackageBucketName,
       key,
       body: functionPackage,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    }) as any //SDK mismatches
+    })
   );
+  console.log(x);
 
   return functions.send(
     new UpdateFunctionCommand({
       functionName,
-      packageBucket: bucketName,
+      packageBucket: sharedPackageBucketName,
       packageKey: key,
       environmentVariables,
       timeout: 900,
