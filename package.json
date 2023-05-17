@@ -1,6 +1,6 @@
 {
   "name": "@stedi/integrations-sdk",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
@@ -12,7 +12,8 @@
   "files": [
     "dist/**/*",
     "tsconfig.json",
-    ".env.example"
+    ".env.example",
+    ".gitignore"
   ],
   "types": "./dist/index.d.ts",
   "source": "src/index.ts",
