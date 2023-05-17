@@ -62,15 +62,14 @@ export const updateFunction = async (
   environmentVariables?: Record<string, string>
 ): Promise<UpdateFunctionCommandOutput> => {
   const key = buildBucketKey(functionName, stediAccountId);
-  console.log({ key });
-  const x = await buckets.send(
+
+  await buckets.send(
     new PutObjectCommand({
       bucketName: sharedPackageBucketName,
       key,
       body: functionPackage,
     })
   );
-  console.log(x);
 
   return functions.send(
     new UpdateFunctionCommand({
