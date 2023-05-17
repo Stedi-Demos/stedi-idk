@@ -51,6 +51,7 @@
     "@stedi/sdk-client-partners": "^0.2.10",
     "@stedi/sdk-client-sftp": "^0.2.10",
     "@stedi/sdk-client-stash": "^0.2.10",
+    "@types/cli-progress": "^3.11.0",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.15.11",
     "@types/yargs": "^17.0.24",
