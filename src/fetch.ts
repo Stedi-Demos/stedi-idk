@@ -1,6 +1,6 @@
-// this file is equired until @types/node is updated to include native fetch types
-// when this file is removed, we can also remove the undici dependency & copying of
-// this file in the init command
+// this file is only required until @types/node is updated to include native fetch types
+// when this file is removed, we can also remove the `undici` dependency & copying of
+// this file in the init command within @stedi/cli
 
 import * as undici_types from "undici";
 

@@ -1,6 +1,6 @@
 {
   "name": "@stedi/integrations-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
@@ -10,7 +10,9 @@
     "lint": "npx eslint --fix \"src/**/*.ts\""
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "tsconfig.json",
+    ".env.example"
   ],
   "types": "./dist/index.d.ts",
   "source": "src/index.ts",
