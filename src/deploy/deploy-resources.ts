@@ -68,6 +68,15 @@ const resolveAccountId = async (): Promise<string> => {
 };
 
 export const deployResources = async (pathMatch?: string) => {
+  const stediApiKey = requiredEnvVar("STEDI_API_KEY");
+  if (stediApiKey === "<YOUR_STEDI_API_KEY_HERE>") {
+    console.log(
+      `Failed: You must first set the STEDI_API_KEY environment variable in the .env file.
+ 
+You can generate a new API key here: https://www.stedi.com/app/settings/api-keys`
+    );
+    process.exit(1);
+  }
   const stediAccountId = await resolveAccountId();
   const functionPaths = getFunctionPaths(pathMatch);
 

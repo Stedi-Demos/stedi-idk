@@ -1,20 +1,12 @@
 # Stedi Integrations SDK
 
-The Stedi Integrations SDK is a npm module that provides helper functions for managing your Stedi Functions in a git repository.
+You do not need to directly install this project, it'll will be automatically included when you provision a new integrations project using the Stedi CLI.
 
-Using this SDK you can:
+### Using the Stedi CLI to generate a new integrations project
 
-- Import the source code from the official [Stedi Function Templates](https://github.com/Stedi-Demos/function-templates) including their tests.
-- Execute tests for each of your functions.
-- Package and deploy the Typescript code to the Stedi Functions compute platform.
+**NOTE:** You must have a working Node 18 or later environment installed on your machine before you proceed with the Getting Started steps.
 
-### Requirements
-
-You must have a working Node 18 or later environment installed on your machine before you proceed with the Getting Started steps.
-
-### Getting Started
-
-You do not need to directly install the Integrations SDK module, the Stedi CLI will generate an empty Typescript project with all the necessary dependencies as follows:
+Using the Stedi CLI you can generate an empty Typescript project with all the necessary dependencies required to build, test and deploy Step functions.
 
 1. Ensure you have the latest Stedi CLI installed globally
 
@@ -30,39 +22,14 @@ You do not need to directly install the Integrations SDK module, the Stedi CLI w
      cd my-stedi-config
    ```
 
-1. Install your first template function, the following command will install the `transaction-to-webhook` into the project along with it's tests.
+1. Install the npm dependencies.
 
    ```bash
-     npm run install-template transaction-to-webhook
+     npm install
    ```
 
-   You can also choose to rename a template when installing:
+1. Refer to the generated README.md for next steps.
 
    ```bash
-   npm run install-template transaction-to-webhook my-function-name
-   ```
-
-**NOTE:** `transaction-to-webhook is the name of template function, you can view the (entire list here)[https://github.com/Stedi-Demos/function-templates/tree/main/src/functions]
-
-1. Run the test suite
-
-   ```bash
-     npm run test
-   ```
-
-**NOTE:** Stedi Template functions use the ava test runner for Node.js.
-
-### Deploying the functions to Stedi
-
-To deploy the project to your Stedi account:
-
-1. Update the provided `.env` in the project root and ensure the following environment variable is defined:
-
-   - `STEDI_API_KEY`: A Stedi API key is required for authentication. You
-     can [generate an API key](https://www.stedi.com/app/settings/api-keys) in your Stedi account.
-
-1. Deploy the resources:
-
-   ```bash
-     npm run deploy
+     open README.md
    ```
