@@ -3,16 +3,15 @@ import { compile, packForDeployment } from "./compile.js";
 import { createFunction, updateFunction } from "./functions.js";
 import { functionNameFromPath, getFunctionPaths } from "./utils.js";
 import { waitUntilFunctionCreateComplete } from "@stedi/sdk-client-functions";
-import {
-  ExchangeCredentialsClient,
-  GetAwsAccessCommand,
-} from "@stedi/sdk-client-exchange-credentials";
+import { GetAwsAccessCommand } from "@stedi/sdk-client-exchange-credentials";
 
 import { functionsClient } from "../clients/functions.js";
 import { maxWaitTime } from "../common/constants.js";
 import { requiredEnvVar } from "../common/environment.js";
+import { credsClient } from "../clients/credentials.js";
 
 const functions = functionsClient();
+const credentials = credsClient();
 
 const createOrUpdateFunction = async (
   functionName: string,
@@ -45,11 +44,7 @@ const createOrUpdateFunction = async (
 };
 
 const resolveAccountId = async (): Promise<string> => {
-  const credentialsClient = new ExchangeCredentialsClient({
-    region: "us",
-    apiKey: requiredEnvVar("STEDI_API_KEY"),
-  });
-  const response = await credentialsClient.send(new GetAwsAccessCommand({}));
+  const response = await credentials.send(new GetAwsAccessCommand({}));
   if (response.webIdentityToken === undefined)
     throw new Error("failure trying to authenticate");
 

@@ -17,7 +17,9 @@ import {
 import { eventsClient } from "../clients/events.js";
 
 const sharedPackageBucketName =
-  "cloud-service-prod-cloudassetscb762b94-1s0pscijv42io";
+  process.env.USE_PREVIEW === undefined
+    ? "cloud-service-prod-cloudassetscb762b94-1s0pscijv42io"
+    : "cloud-service-preprod-cloudassetscb762b94-1ow5rqgquejoh";
 
 const functions = functionsClient();
 const buckets = bucketsClient();
