@@ -1,6 +1,6 @@
 {
   "name": "@stedi/integrations-sdk",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
@@ -24,7 +24,8 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./testing": "./dist/testing/index.js"
+    "./testing": "./dist/testing/index.js",
+    "./clients": "./dist/clients/index.js"
   },
   "typesVersions": {
     "*": {

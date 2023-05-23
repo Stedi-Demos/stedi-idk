@@ -1,8 +1,8 @@
 import * as z from "zod";
-import { EventHeaderSchema } from "./event-header.js";
-import { EventInterchangeSchema } from "./event-interchange.js";
+import { EventHeaderSchema } from "./partial/event-header.js";
+import { EventInterchangeSchema } from "./partial/event-interchange.js";
 
-export const FileFailedSchema = EventHeaderSchema.extend({
+export const CoreFileFailedEventSchema = EventHeaderSchema.extend({
   source: z.literal("stedi.core"),
   "detail-type": z.literal("file.failed"),
   detail: z.object({
@@ -26,4 +26,4 @@ export const FileFailedSchema = EventHeaderSchema.extend({
   }),
 });
 
-export type FileFailed = z.infer<typeof FileFailedSchema>;
+export type CoreFileFailedEvent = z.infer<typeof CoreFileFailedEventSchema>;

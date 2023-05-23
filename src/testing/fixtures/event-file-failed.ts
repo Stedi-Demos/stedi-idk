@@ -1,6 +1,6 @@
-import { FileFailed } from "../../schemas/event-file-failed.js";
+import { CoreFileFailedEvent } from "../../schemas/event-file-failed.js";
 
-export const sampleFileFailedEvent = (): FileFailed => ({
+export const sampleFileFailedEvent = (): CoreFileFailedEvent => ({
   version: "0",
   id: "xxx-05d4-b198-2fde-7ededc63b103",
   "detail-type": "file.failed",

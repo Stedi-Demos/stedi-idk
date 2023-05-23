@@ -1,13 +1,13 @@
 import * as z from "zod";
-import { EventInterchangeSchema } from "./event-interchange.js";
-import { EventPartnershipSchema } from "./event-partnership.js";
-import { EventFunctionalGroupSchema } from "./event-functional-group.js";
-import { EventHeaderSchema } from "./event-header.js";
+import { EventInterchangeSchema } from "./partial/event-interchange.js";
+import { EventPartnershipSchema } from "./partial/event-partnership.js";
+import { EventFunctionalGroupSchema } from "./partial/event-functional-group.js";
+import { EventHeaderSchema } from "./partial/event-header.js";
 
 export const UsageIndicatorCodeSchema = z.enum(["P", "T", "I"]);
 export type UsageIndicatorCode = z.infer<typeof UsageIndicatorCodeSchema>;
 
-export const TransactionProcessedSchema = EventHeaderSchema.extend({
+export const CoreTransactionProcessedEventSchema = EventHeaderSchema.extend({
   source: z.literal("stedi.core"),
   "detail-type": z.literal("transaction.processed"),
   detail: z.object({
@@ -40,4 +40,6 @@ export const TransactionProcessedSchema = EventHeaderSchema.extend({
   }),
 });
 
-export type TransactionProcessed = z.infer<typeof TransactionProcessedSchema>;
+export type CoreTransactionProcessedEvent = z.infer<
+  typeof CoreTransactionProcessedEventSchema
+>;
