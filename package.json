@@ -82,6 +82,7 @@
   },
   "ava": {
     "typescript": {
+      "environmentVariables": {},
       "rewritePaths": {
         "src/": "dist/"
       },
