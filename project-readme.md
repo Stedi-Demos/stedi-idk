@@ -38,7 +38,7 @@ You must have a working Node 18 or later environment installed on your machine b
      npm run test
    ```
 
-**NOTE:** Stedi Template functions use the [AVE test runner](https://github.com/avajs/ava) for Node.js.
+**NOTE:** Stedi Template functions use the [AVA test runner](https://github.com/avajs/ava) for Node.js.
 
 ### Deploying the functions to Stedi
 
