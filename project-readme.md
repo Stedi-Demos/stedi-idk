@@ -1,10 +1,10 @@
 # Stedi Integrations Project
 
-This Stedi Integrations project helps you manage your Stedi Functions, you can:
+This Stedi Integrations project helps you manage your Stedi Functions. You can:
 
-- Import the source code from the official [Stedi Function Templates](https://github.com/Stedi-Demos/function-templates) including their tests.
+- Import source code from official [Stedi Function Templates](https://github.com/Stedi-Demos/function-templates), including their tests.
 - Execute tests for each of your functions.
-- Package and deploy the Typescript code to the Stedi Functions compute platform.
+- Package and deploy the TypeScript code to the [Stedi Functions](https://www.stedi.com/docs/functions) compute platform.
 
 ### Requirements
 
@@ -18,7 +18,7 @@ You must have a working Node 18 or later environment installed on your machine b
      npm install
    ```
 
-1. Install your first template function, the following command will install the `transaction-to-webhook` into the project along with it's tests.
+1. Install your first template function. The following command will install the `transaction-to-webhook` into the project along with its tests.
 
    ```bash
      npm run install-template transaction-to-webhook
@@ -30,7 +30,7 @@ You must have a working Node 18 or later environment installed on your machine b
    npm run install-template transaction-to-webhook my-function-name
    ```
 
-**NOTE:** `transaction-to-webhook is the name of template function, you can view the (entire list here)[https://github.com/Stedi-Demos/function-templates/tree/main/src/functions]
+**NOTE:** `transaction-to-webhook` is the name of a template function. You can view the (full list here)[https://github.com/Stedi-Demos/function-templates/tree/main/src/functions]
 
 1. Run the test suite
 
@@ -38,7 +38,7 @@ You must have a working Node 18 or later environment installed on your machine b
      npm run test
    ```
 
-**NOTE:** Stedi Template functions use the ava test runner for Node.js.
+**NOTE:** Stedi Template functions use the [AVA test runner](https://github.com/avajs/ava) for Node.js.
 
 ### Deploying the functions to Stedi
 
