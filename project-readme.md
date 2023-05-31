@@ -18,27 +18,23 @@ You must have a working Node 18 or later environment installed on your machine b
      npm install
    ```
 
-1. Install your first template function. The following command will install the `transaction-to-webhook` into the project along with its tests.
+1. Create you first function using the guided `new-function` command:
 
    ```bash
-     npm run install-template transaction-to-webhook
+     npm run new-function -- my-function-name --guided
    ```
 
-   You can also choose to rename a template when installing:
+This command will generate a basic Stedi Function placeholder, along with a test to help you get started.
 
-   ```bash
-   npm run install-template transaction-to-webhook my-function-name
-   ```
+**NOTE:** The `--guided` flag will prompt you to select which Stedi Event you'd like your function to consume.
 
-**NOTE:** `transaction-to-webhook` is the name of a template function. You can view the (full list here)[https://github.com/Stedi-Demos/function-templates/tree/main/src/functions]
-
-1. Run the test suite
+1. Run the tests for your newly created function.
 
    ```bash
      npm run test
    ```
 
-**NOTE:** Stedi Template functions use the [AVA test runner](https://github.com/avajs/ava) for Node.js.
+**NOTE:** Generated functions use the [AVA test runner](https://github.com/avajs/ava) for Node.js.
 
 ### Deploying the functions to Stedi
 
