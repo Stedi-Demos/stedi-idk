@@ -18,7 +18,7 @@ You must have a working Node 18 or later environment installed on your machine b
      npm install
    ```
 
-1. Create you first function using the guided `new-function` command:
+1. Create your first function using the guided `new-function` command:
 
    ```bash
      npm run new-function -- my-function-name --guided
