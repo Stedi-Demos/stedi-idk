@@ -63,6 +63,8 @@
     "ava": "^5.2.0",
     "aws-sdk-client-mock": "2.1.1",
     "c8": "^7.13.0",
+    "chalk": "^5.2.0",
+    "cli-select": "^1.1.2",
     "dotenv": "^16.0.3",
     "esbuild": "^0.17.19",
     "eslint": "^8.37.0",
