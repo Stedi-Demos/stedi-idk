@@ -83,8 +83,8 @@
     "useTabs": false
   },
   "ava": {
+    "environmentVariables": {},
     "typescript": {
-      "environmentVariables": {},
       "rewritePaths": {
         "src/": "dist/"
       },
