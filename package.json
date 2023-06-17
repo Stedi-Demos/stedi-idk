@@ -48,7 +48,7 @@
     "@stedi/sdk-client-edi-translate": "0.2.34",
     "@stedi/sdk-client-events": "0.2.34",
     "@stedi/sdk-client-functions": "0.2.34",
-    "@stedi/sdk-client-guides": "0.2.33",
+    "@stedi/sdk-client-guides": "0.2.34",
     "@stedi/sdk-client-identity": "0.2.33",
     "@stedi/sdk-client-mappings": "0.2.33",
     "@stedi/sdk-client-partners": "0.2.33",
