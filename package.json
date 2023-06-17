@@ -50,7 +50,7 @@
     "@stedi/sdk-client-functions": "0.2.34",
     "@stedi/sdk-client-guides": "0.2.34",
     "@stedi/sdk-client-identity": "0.2.34",
-    "@stedi/sdk-client-mappings": "0.2.33",
+    "@stedi/sdk-client-mappings": "0.2.34",
     "@stedi/sdk-client-partners": "0.2.33",
     "@stedi/sdk-client-sftp": "0.2.33",
     "@stedi/sdk-client-stash": "0.2.32",
