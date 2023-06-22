@@ -43,7 +43,7 @@
     "@ava/typescript": "4.0.0",
     "@aws-sdk/client-s3": "3.354.0",
     "@aws-sdk/util-stream-node": "3.350.0",
-    "@stedi/sdk-client-as2": "0.2.36",
+    "@stedi/sdk-client-as2": "0.2.37",
     "@stedi/sdk-client-buckets": "0.2.36",
     "@stedi/sdk-client-edi-translate": "0.2.35",
     "@stedi/sdk-client-events": "0.2.35",
