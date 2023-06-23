@@ -1,6 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "local>Stedi-Demos/renovate-config"
+  "extends": ["local>Stedi-Demos/renovate-config"],
+  "packageRules": [
+    {
+      "matchPackagePrefixes": ["@stedi/sdk"],
+      "matchCurrentVersion": "/^[~^]?0/",
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest",
+        "pinDigest",
+        "rollback",
+        "bump"
+      ],
+      "stabilityDays": 0,
+      "addLabels": ["dependencies", "sdk-upgrade"],
+      "prPriority": 100,
+      "groupName": "Stedi SDK upgrade",
+      "automerge": true,
+      "platformAutomerge": true
+    }
   ]
 }
