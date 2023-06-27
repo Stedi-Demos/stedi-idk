@@ -9,7 +9,9 @@ export const as2Client = () => {
       ...DEFAULT_SDK_CLIENT_PROPS,
     };
 
-    if (process.env.USE_PREVIEW !== undefined) config.stage = "preproduction";
+    if (process.env.USE_PREVIEW !== undefined) {
+      config.stage = "preproduction";
+    }
 
     _as2Client = new As2Client(config);
   }

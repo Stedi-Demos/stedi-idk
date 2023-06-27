@@ -13,9 +13,10 @@ export const functionsClient = (): FunctionsClient => {
       ...DEFAULT_SDK_CLIENT_PROPS,
     };
 
-    if (process.env.USE_PREVIEW !== undefined)
+    if (process.env.USE_PREVIEW !== undefined) {
       config.endpoint =
         "https://functions.cloud.preproduction.stedi.com/2021-11-16";
+    }
 
     _functionsClient = new FunctionsClient(config);
   }

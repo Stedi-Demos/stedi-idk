@@ -10,7 +10,9 @@ export const eventsClient = (): EventsClient => {
       ...DEFAULT_SDK_CLIENT_PROPS,
     };
 
-    if (process.env.USE_PREVIEW !== undefined) config.stage = "preproduction";
+    if (process.env.USE_PREVIEW !== undefined) {
+      config.stage = "preproduction";
+    }
 
     _eventsClient = new EventsClient(config);
   }
