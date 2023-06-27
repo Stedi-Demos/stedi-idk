@@ -8,10 +8,18 @@ export const CoreFileFailedEventSchema = EventHeaderSchema.extend({
   detail: z.object({
     version: z.literal("2023-02-13"),
     fileId: z.string(),
-    direction: z.literal("SENT").or(z.literal("RECEIVED")),
-    envelopes: z.object({
-      interchange: EventInterchangeSchema,
+    direction: z
+      .literal("SENT")
+      .or(z.literal("RECEIVED"))
+      .or(z.literal("UNKNOWN")),
+    metadata: z.object({
+      fileExecutionId: z.string(),
     }),
+    envelopes: z.optional(
+      z.object({
+        interchange: EventInterchangeSchema,
+      })
+    ),
     input: z.object({
       type: z.string(),
       bucketName: z.string(),
