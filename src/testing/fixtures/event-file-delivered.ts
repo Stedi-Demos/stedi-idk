@@ -12,7 +12,7 @@ export const sampleFileDeliveredEvent = (): CoreFileDeliveredEvent => ({
     version: "2023-02-13",
     metadata: {
       processedAt: "2023-03-14T19:19:17.950Z",
-      fileExecutionId: "1234-4321-1234-4321",
+      fileExecutionId: "12d584eb-3a19-42f3-99fa-5526f273d8dc",
     },
     source: {
       type: "bucket",
