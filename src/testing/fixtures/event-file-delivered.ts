@@ -12,12 +12,12 @@ export const sampleFileDeliveredEvent = (): CoreFileDeliveredEvent => ({
     version: "2023-02-13",
     metadata: {
       processedAt: "2023-03-14T19:19:17.950Z",
+      fileExecutionId: "1234-4321-1234-4321",
     },
     source: {
       type: "bucket",
       bucketName: "xxxxxxx-sftp",
       key: "trading-partner/xxxx/xxxx.edi",
-      size: 123,
     },
     connection: {
       connectionType: "BUCKET",

@@ -12,12 +12,12 @@ export const sampleFileProcessedEvent = (): CoreFileProcessedEvent => ({
     version: "2023-02-13",
     metadata: {
       processedAt: "2023-03-14T19:19:17.950Z",
+      fileExecutionId: "1234-4321-1234-4321",
     },
     source: {
       type: "CSV",
       bucketName: "test-bucket",
       key: "123ABC/1746-1746-1.txt",
-      size: 4301,
     },
   },
 });

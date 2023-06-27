@@ -12,6 +12,9 @@ export const sampleFileFailedEvent = (): CoreFileFailedEvent => ({
     version: "2023-02-13",
     fileId: "123ABC",
     direction: "RECEIVED",
+    metadata: {
+      fileExecutionId: "1234-4321-1234-4321",
+    },
     envelopes: {
       interchange: {
         acknowledgmentRequestedCode: "0",

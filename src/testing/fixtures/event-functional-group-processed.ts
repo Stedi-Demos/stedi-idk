@@ -36,6 +36,10 @@ export const sampleFunctionalGroupProcessedEvent =
           time: "20:22:22",
         },
       },
+      metadata: {
+        processedAt: "2023-03-14T19:19:17.950Z",
+        fileExecutionId: "1234-4321-1234-4321",
+      },
       transactionSetCount: 1,
       transactionSetIds: ["855", "850"],
       input: {

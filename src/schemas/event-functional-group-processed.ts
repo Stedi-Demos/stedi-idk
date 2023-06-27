@@ -10,6 +10,10 @@ export const CoreFunctionalGroupProcessedEventSchema = EventHeaderSchema.extend(
     detail: z.strictObject({
       version: z.literal("2023-02-13"),
       direction: z.enum(["SENT", "RECEIVED"]),
+      metadata: z.object({
+        processedAt: z.string(),
+        fileExecutionId: z.string(),
+      }),
       envelopes: z.strictObject({
         interchange: EventInterchangeSchema,
         functionalGroup: EventFunctionalGroupSchema,

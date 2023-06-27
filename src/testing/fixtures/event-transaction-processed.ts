@@ -38,6 +38,7 @@ export const sampleTransactionProcessedEvent =
       },
       metadata: {
         processedAt: "2023-03-14T19:19:17.950Z",
+        fileExecutionId: "1234-4321-1234-4321",
       },
       transaction: {
         id: "a542c152-87c5-4916-848d-e60d47fe0e34",

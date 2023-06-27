@@ -8,12 +8,12 @@ export const CoreFileProcessedEventSchema = EventHeaderSchema.extend({
     version: z.literal("2023-02-13"),
     metadata: z.object({
       processedAt: z.string(),
+      fileExecutionId: z.string(),
     }),
     source: z.object({
       type: z.string(),
       bucketName: z.string(),
       key: z.string(),
-      size: z.number(),
     }),
   }),
 });

@@ -17,14 +17,15 @@ export const CoreTransactionProcessedEventSchema = EventHeaderSchema.extend({
       interchange: EventInterchangeSchema,
       functionalGroup: EventFunctionalGroupSchema,
     }),
+    metadata: z.object({
+      processedAt: z.string(),
+      fileExecutionId: z.string(),
+    }),
     transaction: z.object({
       controlNumber: z.number(),
       id: z.string(),
       transactionSetIdentifier: z.string(),
       guideId: z.string().optional(),
-    }),
-    metadata: z.object({
-      processedAt: z.string(),
     }),
     input: z.object({
       type: z.string(),
