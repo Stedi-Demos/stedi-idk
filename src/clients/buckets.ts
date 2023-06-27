@@ -10,9 +10,10 @@ export const bucketsClient = () => {
       ...DEFAULT_SDK_CLIENT_PROPS,
     };
 
-    if (process.env.USE_PREVIEW !== undefined)
+    if (process.env.USE_PREVIEW !== undefined) {
       config.endpoint =
         "https://buckets.cloud.us.preproduction.stedi.com/2022-05-05";
+    }
 
     _bucketClient = new BucketsClient(config);
   }

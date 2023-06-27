@@ -9,8 +9,9 @@ export const guidesClient = () => {
       ...DEFAULT_SDK_CLIENT_PROPS,
     };
 
-    if (process.env.USE_PREVIEW !== undefined)
+    if (process.env.USE_PREVIEW !== undefined) {
       config.endpoint = "https://guides.us.preproduction.stedi.com/2022-03-09";
+    }
 
     _guidesClient = new GuidesClient(config);
   }

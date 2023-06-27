@@ -9,8 +9,9 @@ export const stashClient = () => {
       ...DEFAULT_SDK_CLIENT_PROPS,
     };
 
-    if (process.env.USE_PREVIEW !== undefined)
+    if (process.env.USE_PREVIEW !== undefined) {
       config.endpoint = "https://stash.us.preproduction.stedi.com/2022-04-20";
+    }
 
     _stashClient = new StashClient(config);
   }

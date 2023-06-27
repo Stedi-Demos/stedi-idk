@@ -12,9 +12,10 @@ export const translateClient = () => {
       ...DEFAULT_SDK_CLIENT_PROPS,
     };
 
-    if (process.env.USE_PREVIEW !== undefined)
+    if (process.env.USE_PREVIEW !== undefined) {
       config.endpoint =
         "https://edi-translate.us.preproduction.stedi.com/2022-01-01";
+    }
 
     _translateClient = new EDITranslateClient(config);
   }
