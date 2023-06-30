@@ -22,5 +22,5 @@
       "platformAutomerge": true
     }
   ],
-  "ignoreDeps": ["@aws-sdk"]
+  "ignoreDeps": ["@aws-sdk/client-s3", "@aws-sdk/util-stream-node"]
 }
