@@ -21,5 +21,6 @@
       "automerge": true,
       "platformAutomerge": true
     }
-  ]
+  ],
+  "ignoreDeps": ["@aws-sdk"]
 }
