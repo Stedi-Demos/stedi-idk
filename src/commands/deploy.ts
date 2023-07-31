@@ -1,4 +1,5 @@
 import { deployResources } from "../deploy/deploy-resources.js";
+import { requiredEnvVar } from "../common/environment.js";
 
 export const command = "deploy";
 
@@ -12,7 +13,8 @@ export const builder = {
   },
 };
 
-export const handler = async (argv: { path?: string }) => {
+export const handler = async (argv: { path?: string; }) => {
+  requiredEnvVar("STEDI_API_KEY");
   console.log(`Deploying...`);
   await deployResources(argv.path);
 };
