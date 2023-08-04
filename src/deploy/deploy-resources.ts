@@ -75,7 +75,6 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
   const stediAccountId = await resolveAccountId();
   const functionPaths = getFunctionPaths(pathMatch);
 
-  const FUNCTION_NAMES: string[] = [];
   const promises: Promise<unknown>[] = functionPaths.map(async (fnPath) => {
     const functionName = functionNameFromPath(fnPath);
 
@@ -92,6 +91,9 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
       environmentVariables.NODE_OPTIONS = "--enable-source-maps";
       environmentVariables.STEDI_FUNCTION_NAME = functionName;
 
+      // The API key is not needed when running in the context of a Stedi function
+      delete environmentVariables.STEDI_API_KEY;
+
       await createOrUpdateFunction(
         functionName,
         functionPackage,
@@ -103,7 +105,6 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
         { client: functions, maxWaitTime },
         { functionName }
       );
-      FUNCTION_NAMES.push(functionName);
 
       console.log(`Done ${functionName}`);
     } catch (e: unknown) {

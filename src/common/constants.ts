@@ -1,8 +1,19 @@
 import { NodeHttpHandler } from "@aws-sdk/node-http-handler";
-import { requiredEnvVar } from "./environment.js";
+import { fromAwsCredentialIdentity } from "@stedi/sdk-token-provider-aws-identity";
 
-export const DEFAULT_SDK_CLIENT_PROPS = {
-  apiKey: requiredEnvVar("STEDI_API_KEY"),
+interface ClientConfig {
+  apiKey?: string;
+  region: "us";
+  maxAttempts: number;
+  requestHandler: NodeHttpHandler;
+}
+
+const credentials = process.env.STEDI_API_KEY
+  ? { apiKey: process.env.STEDI_API_KEY }
+  : { token: fromAwsCredentialIdentity() };
+
+export const DEFAULT_SDK_CLIENT_PROPS: ClientConfig = {
+  ...credentials,
   region: "us",
   maxAttempts: 5,
   requestHandler: new NodeHttpHandler({
