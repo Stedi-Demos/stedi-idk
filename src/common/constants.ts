@@ -1,4 +1,4 @@
-import { NodeHttpHandler } from "@aws-sdk/node-http-handler";
+import { NodeHttpHandler } from "@smithy/node-http-handler";
 import { fromAwsCredentialIdentity } from "@stedi/sdk-token-provider-aws-identity";
 
 interface ClientConfig {
