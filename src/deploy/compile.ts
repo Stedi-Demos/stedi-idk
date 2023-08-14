@@ -9,11 +9,15 @@ export const compile = async (
   buildPath: string,
   debug = false
 ): Promise<string> => {
-  const pathParts = buildPath.replace("/src/", "/dist/src/").split("/");
+  const searchValue = `${path.sep}src${path.sep}`;
+  const replaceValue = `${path.sep}dist${path.sep}src${path.sep}`;
+  const pathParts = buildPath
+    .replace(searchValue, replaceValue)
+    .split(path.sep);
   pathParts.pop(); // discard input file name
 
   pathParts.push("index.mjs");
-  const outputPath = pathParts.join("/");
+  const outputPath = pathParts.join(path.sep);
 
   const result = await build({
     metafile: true,
@@ -51,10 +55,13 @@ const pkg = {
 };
 
 export const packForDeployment = async (javascriptPath: string) => {
-  const dir = `${os.tmpdir()}/idk-deploy`;
+  const dir = `${os.tmpdir()}${path.sep}idk-deploy`;
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir);
-  fs.writeFileSync(`${dir}/package.json`, JSON.stringify(pkg, null, 2));
+  fs.writeFileSync(
+    `${dir}${path.sep}package.json`,
+    JSON.stringify(pkg, null, 2)
+  );
 
   const npm = process.platform === "win32" ? "npm.cmd" : "npm";
   cp.spawnSync(npm, ["install", "--production"], {
@@ -107,8 +114,9 @@ const getZipOfFolder = (dir: string): JSZip => {
   // returns a JSZip instance filled with contents of dir.
 
   const allPaths = getFilePathsRecursively(dir);
+  const expectedNodeModulesDirectory = `node_modules${path.sep}`;
 
-  if (!allPaths.some((path) => path.includes("node_modules/")))
+  if (!allPaths.some((path) => path.includes(expectedNodeModulesDirectory)))
     throw new Error(
       "There was an issue installing the dependencies using your local npm installation, please check your .npmrc and try again."
     );

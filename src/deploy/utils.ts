@@ -1,29 +1,16 @@
 import fs from "fs";
-import dotenv from "dotenv";
-
-const DEFAULT_DOT_ENV_FILE_PATH = "./.env";
+import path from "path";
 
 interface ResourceFile {
   basePath: string;
   fileName?: string;
 }
 
-export interface ResourceDetails {
-  name: string;
-  id: string;
-}
-
-// TODO: replace this with dynamic directory listing
-export const getEnabledTransactionSets = (): string[] => [
-  "X12-5010-850",
-  "X12-5010-855",
-];
-
 export const functionNameFromPath = (fnPath: string): string => {
   // get function name excluding extension
   // path-a/path-b/path-never-ends/nice/function/handler.ts
   // => nice-function
-  const functionName = fnPath.split("/").slice(-3, -1).join("-");
+  const functionName = fnPath.split(path.sep).slice(-3, -1).join("-");
 
   // path-a/functions/my-func/handler.ts
   // => my-func
@@ -33,15 +20,17 @@ export const functionNameFromPath = (fnPath: string): string => {
 };
 
 export const getFunctionPaths = (pathMatch?: string) => {
-  const functionsRoot = "./src/functions";
+  const functionsRoot = `.${path.sep}src${path.sep}functions`;
   const namespaces = fs.readdirSync(functionsRoot);
 
   const allFunctionPaths = namespaces.reduce((paths: string[], namespace) => {
-    if (fs.lstatSync(`${functionsRoot}/${namespace}`).isFile()) return paths;
+    if (fs.lstatSync(`${functionsRoot}${path.sep}${namespace}`).isFile()) {
+      return paths;
+    }
 
     return paths.concat(
       getAssetPaths({
-        basePath: `${functionsRoot}/${namespace}`,
+        basePath: `${functionsRoot}${path.sep}${namespace}`,
         fileName: "handler.ts",
       })
     );
@@ -58,38 +47,31 @@ const getAssetPaths = (resourceFile: Required<ResourceFile>): string[] => {
   return assets.reduce((collectedAssets: string[], assetName) => {
     // root functions
     if (assetName === resourceFile.fileName)
-      return [`${resourceFile.basePath}/${assetName}`];
+      return [`${resourceFile.basePath}${path.sep}${assetName}`];
 
     // namespaced functions
     if (
-      fs.lstatSync(`${resourceFile.basePath}/${assetName}`).isFile() ||
+      fs
+        .lstatSync(`${resourceFile.basePath}${path.sep}${assetName}`)
+        .isFile() ||
       !fs.existsSync(
-        `${resourceFile.basePath}/${assetName}/${resourceFile.fileName}`
+        `${resourceFile.basePath}${path.sep}${assetName}${path.sep}${resourceFile.fileName}`
       )
     ) {
       return collectedAssets;
     }
 
     return collectedAssets.concat(
-      `${resourceFile.basePath}/${assetName}/${resourceFile.fileName}`
+      `${resourceFile.basePath}${path.sep}${assetName}${path.sep}${resourceFile.fileName}`
     );
   }, []);
 };
 
 // helper function to filter out paths that don't include the `pathMatch` string, and to check for `no match`
 const filterPaths = (paths: string[], pathMatch?: string): string[] => {
-  if (pathMatch) paths = paths.filter((path) => path.includes(`/${pathMatch}`));
+  if (pathMatch) {
+    paths = paths.filter((p) => p.includes(`${path.sep}${pathMatch}`));
+  }
 
   return paths;
-};
-
-export const updateDotEnvFile = (envVars: dotenv.DotenvParseOutput) => {
-  const envVarEntries = Object.entries(envVars).reduce(
-    (fileContents: string, [key, value]) => {
-      return fileContents.concat(`${key}=${value}\n`);
-    },
-    ""
-  );
-
-  fs.writeFileSync(DEFAULT_DOT_ENV_FILE_PATH, envVarEntries);
 };

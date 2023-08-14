@@ -8,3 +8,4 @@ export * from "./fixtures/event-file-processed.js";
 export * from "./fixtures/event-file-failed.js";
 export * from "./fixtures/event-file-delivered.js";
 export * from "./fixtures/event-file-created.js";
+export * from "./fixtures/mock-bucket-stream-response.js";
