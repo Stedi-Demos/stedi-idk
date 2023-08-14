@@ -1,6 +1,6 @@
 {
   "name": "@stedi/integrations-sdk",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
@@ -41,7 +41,7 @@
   "license": "ISC",
   "devDependencies": {
     "@ava/typescript": "4.1.0",
-    "@smithy/types": "2.2.0",
+    "@smithy/types": "1.2.0",
     "@smithy/util-stream-node": "2.0.3",
     "@stedi/sdk-client-as2": "0.4.23",
     "@stedi/sdk-client-buckets": "0.4.23",
