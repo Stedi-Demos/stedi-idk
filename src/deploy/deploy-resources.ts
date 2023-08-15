@@ -10,9 +10,6 @@ import { maxWaitTime } from "../common/constants.js";
 import { requiredEnvVar } from "../common/environment.js";
 import { credsClient } from "../clients/credentials.js";
 
-const functions = functionsClient();
-const credentials = credsClient();
-
 const createOrUpdateFunction = async (
   functionName: string,
   functionPackage: Uint8Array,
@@ -44,7 +41,7 @@ const createOrUpdateFunction = async (
 };
 
 const resolveAccountId = async (): Promise<string> => {
-  const response = await credentials.send(new GetAwsAccessCommand({}));
+  const response = await credsClient().send(new GetAwsAccessCommand({}));
   if (response.webIdentityToken === undefined)
     throw new Error("failure trying to authenticate");
 
@@ -102,7 +99,7 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
       );
 
       await waitUntilFunctionCreateComplete(
-        { client: functions, maxWaitTime },
+        { client: functionsClient(), maxWaitTime },
         { functionName }
       );
 
