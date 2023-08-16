@@ -21,10 +21,6 @@ const sharedPackageBucketName =
     ? "cloud-service-prod-cloudassetscb762b94-1s0pscijv42io"
     : "cloud-service-preprod-cloudassetscb762b94-1ow5rqgquejoh";
 
-const functions = functionsClient();
-const buckets = bucketsClient();
-const events = eventsClient();
-
 const buildBucketKey = (functionName: string, stediAccountId: string): string =>
   `deployments/${stediAccountId}/${functionName}-${new Date()
     .getTime()
@@ -38,7 +34,7 @@ export const createFunction = async (
 ): Promise<CreateFunctionCommandOutput> => {
   const key = buildBucketKey(functionName, stediAccountId);
 
-  await buckets.send(
+  await bucketsClient().send(
     new PutObjectCommand({
       bucketName: sharedPackageBucketName,
       key,
@@ -46,7 +42,7 @@ export const createFunction = async (
     })
   );
 
-  return functions.send(
+  return functionsClient().send(
     new CreateFunctionCommand({
       functionName,
       packageBucket: sharedPackageBucketName,
@@ -65,7 +61,7 @@ export const updateFunction = async (
 ): Promise<UpdateFunctionCommandOutput> => {
   const key = buildBucketKey(functionName, stediAccountId);
 
-  await buckets.send(
+  await bucketsClient().send(
     new PutObjectCommand({
       bucketName: sharedPackageBucketName,
       key,
@@ -73,7 +69,7 @@ export const updateFunction = async (
     })
   );
 
-  return functions.send(
+  return functionsClient().send(
     new UpdateFunctionCommand({
       functionName,
       packageBucket: sharedPackageBucketName,
@@ -87,7 +83,7 @@ export const updateFunction = async (
 export const deleteFunction = async (
   functionName: string
 ): Promise<DeleteFunctionCommandOutput> => {
-  return functions.send(
+  return functionsClient().send(
     new DeleteFunctionCommand({
       functionName,
     })
@@ -99,7 +95,7 @@ export const createFunctionEventBinding = async (
   eventPattern: DocumentType,
   eventToFunctionBindingName: string
 ) => {
-  return events.send(
+  return eventsClient().send(
     new CreateEventToFunctionBindingCommand({
       eventPattern,
       functionName,
@@ -113,7 +109,7 @@ export const updateFunctionEventBinding = async (
   eventPattern: DocumentType,
   eventToFunctionBindingName: string
 ) => {
-  return events.send(
+  return eventsClient().send(
     new UpdateEventToFunctionBindingCommand({
       eventPattern,
       functionName,

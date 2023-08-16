@@ -1,5 +1,8 @@
 import { NodeHttpHandler } from "@smithy/node-http-handler";
 import { fromAwsCredentialIdentity } from "@stedi/sdk-token-provider-aws-identity";
+import dotenv from "dotenv";
+
+dotenv.config({ override: true, path: process.env.DOTENV_CONFIG_PATH });
 
 interface ClientConfig {
   apiKey?: string;
