@@ -4,6 +4,7 @@ export * from "./partial/event-interchange.js";
 export * from "./partial/event-partnership.js";
 export * from "./event-functional-group-processed.js";
 export * from "./event-transaction-processed.js";
+export * from "./event-transaction-processed-v2.js";
 export * from "./event-file-processed.js";
 export * from "./event-file-delivered.js";
 export * from "./event-file-failed.js";
