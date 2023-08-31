@@ -1,5 +1,13 @@
 import { type CoreTransactionProcessedV2Event } from "../../schemas/event-transaction-processed-v2.js";
 
+export const sampleTransactionId = "abc123-abc123-abc123";
+export const samplePartnershipId = "ThisIsMe-AnotherMerch";
+export const sampleTransactionSetIdentifier = "850";
+export const sampleTransactionResourceUrl =
+  "https://core.us.stedi.com/2023-08-01/transaction/";
+export const sampleInputArtifactUrl = `${sampleTransactionResourceUrl}/input`;
+export const sampleOutputArtifactUrl = `${sampleTransactionResourceUrl}/output`;
+
 export const sampleTransactionProcessedV2Event =
   (): CoreTransactionProcessedV2Event => ({
     id: "xxx-05d4-b198-2fde-7ededc63b103",
@@ -9,31 +17,29 @@ export const sampleTransactionProcessedV2Event =
     time: "2023-08-12T00:00:00Z",
     version: "0",
     region: "us-east-1",
-    resources: [
-      "https://core.us.stedi.com/2023-08-01/transaction/a542c152-87c5-4916-848d-e60d47fe0e34",
-    ],
+    resources: [sampleTransactionResourceUrl],
     detail: {
       direction: "INBOUND",
       mode: "production",
       fileExecutionId: "12d584eb-3a19-42f3-99fa-5526f273d8d",
-      transactionId: "a542c152-87c5-4916-848d-e60d47fe0e34",
+      transactionId: sampleTransactionId,
       processedAt: "2023-08-12T00:00:00Z",
       artifacts: [
         {
           artifactType: "application/edi-x12",
           usage: "input",
           sizeBytes: 123,
-          url: "https://core.us.stedi.com/2023-08-01/transaction/a542c152-87c5-4916-848d-e60d47fe0e34/input",
+          url: sampleInputArtifactUrl,
         },
         {
           artifactType: "application/json",
           usage: "output",
           sizeBytes: 234,
-          url: "https://core.us.stedi.com/2023-08-01/transaction/a542c152-87c5-4916-848d-e60d47fe0e34/output",
+          url: sampleOutputArtifactUrl,
         },
       ],
       partnership: {
-        partnershipId: "ThisIsMe-AnotherMerch",
+        partnershipId: samplePartnershipId,
         partnershipType: "x12",
         sender: {
           profileId: "this-is-me",
@@ -57,7 +63,7 @@ export const sampleTransactionProcessedV2Event =
           },
           transaction: {
             controlNumber: "0002",
-            transactionSetIdentifier: "850",
+            transactionSetIdentifier: sampleTransactionSetIdentifier,
           },
           sender: {
             applicationCode: "ANOTHERMERCH",
