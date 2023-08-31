@@ -1,6 +1,10 @@
 // reexport so mocking so idk projects can reuse directly
 export { mockClient } from "aws-sdk-client-mock";
 
+// jwt-encoded representation of: `{ "id_token": "test-token" }`
+export const testJwt =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF90b2tlbiI6InRlc3QtdG9rZW4ifQ.dvGf0OC2P2j7hB4gFqwyqmUJ1SJSpOzsPwIrNzDAy8E";
+
 // fixtures used in tests
 export * from "./fixtures/event-transaction-processed.js";
 export * from "./fixtures/event-transaction-processed-v2.js";
