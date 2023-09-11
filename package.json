@@ -54,7 +54,7 @@
     "@stedi/sdk-client-partners": "0.4.30",
     "@stedi/sdk-client-sftp": "0.4.30",
     "@stedi/sdk-client-stash": "0.4.30",
-    "@stedi/sdk-token-provider-aws-identity": "0.2.8",
+    "@stedi/sdk-token-provider-aws-identity": "0.2.9",
     "@types/cli-progress": "3.11.0",
     "@types/fs-extra": "11.0.1",
     "@types/node": "20.5.1",
