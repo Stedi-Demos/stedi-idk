@@ -3,12 +3,11 @@ import { compile, packForDeployment } from "./compile.js";
 import { createFunction, updateFunction } from "./functions.js";
 import { functionNameFromPath, getFunctionPaths } from "./utils.js";
 import { waitUntilFunctionCreateComplete } from "@stedi/sdk-client-functions";
-import { GetAwsAccessCommand } from "@stedi/sdk-client-exchange-credentials";
 
 import { functionsClient } from "../clients/functions.js";
 import { maxWaitTime } from "../common/constants.js";
 import { requiredEnvVar } from "../common/environment.js";
-import { credsClient } from "../clients/credentials.js";
+import { resolveAccountId } from "../common/resolve-account-id.js";
 
 const createOrUpdateFunction = async (
   functionName: string,
@@ -38,25 +37,6 @@ const createOrUpdateFunction = async (
       );
     else throw error;
   }
-};
-
-const resolveAccountId = async (): Promise<string> => {
-  const response = await credsClient().send(new GetAwsAccessCommand({}));
-  if (response.webIdentityToken === undefined)
-    throw new Error("failure trying to authenticate");
-
-  const base64Payload = response.webIdentityToken.split(".")[1];
-  if (base64Payload === undefined)
-    throw new Error("failure trying to authenticate");
-
-  const payload = Buffer.from(base64Payload, "base64");
-  const decodedJWT = JSON.parse(payload.toString()) as Record<string, string>;
-
-  const accountId = decodedJWT["stedi:accountId"];
-  if (accountId === undefined)
-    throw new Error("failure trying to determine Stedi account id");
-
-  return accountId;
 };
 
 export const deployResources = async (pathMatch?: string) => {
