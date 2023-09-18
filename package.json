@@ -57,7 +57,7 @@
     "@stedi/sdk-token-provider-aws-identity": "0.2.9",
     "@types/cli-progress": "3.11.0",
     "@types/fs-extra": "11.0.1",
-    "@types/node": "20.5.6",
+    "@types/node": "20.5.7",
     "@types/yargs": "17.0.24",
     "@typescript-eslint/eslint-plugin": "5.61.0",
     "@typescript-eslint/parser": "5.61.0",
