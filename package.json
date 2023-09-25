@@ -55,7 +55,7 @@
     "@stedi/sdk-client-sftp": "0.4.39",
     "@stedi/sdk-client-stash": "0.4.39",
     "@stedi/sdk-token-provider-aws-identity": "0.2.9",
-    "@types/cli-progress": "3.11.0",
+    "@types/cli-progress": "3.11.1",
     "@types/fs-extra": "11.0.1",
     "@types/node": "20.5.9",
     "@types/yargs": "17.0.24",
