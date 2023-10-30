@@ -29,6 +29,7 @@ export const compile = async (
     minify: false,
     sourcemap: true,
     bundle: true,
+    keepNames: true,
     banner: {
       // workaround for using dotenv with esbuild & esm: https://github.com/evanw/esbuild/issues/1921
       js: "import { createRequire } from 'module';const require = createRequire(import.meta.url);",
