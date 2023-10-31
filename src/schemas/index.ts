@@ -7,6 +7,7 @@ export * from "./event-transaction-processed.js";
 export * from "./event-transaction-processed-v2.js";
 export * from "./event-file-processed.js";
 export * from "./event-file-processed-v2.js";
+export * from "./event-fragment-processed-v2.js";
 export * from "./event-file-delivered.js";
 export * from "./event-file-delivered-v2.js";
 export * from "./event-file-failed.js";
