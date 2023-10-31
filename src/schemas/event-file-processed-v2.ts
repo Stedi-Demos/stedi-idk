@@ -8,6 +8,8 @@ export const CoreFileProcessedV2EventSchema = EventHeaderSchema.extend({
   detail: z.object({
     fileExecutionId: z.string(),
     processedAt: z.string(),
+    partnershipId: z.string().optional(),
+    connectionId: z.string().optional(),
     artifacts: z
       .array(
         z.strictObject({

@@ -1,4 +1,5 @@
 import { CoreFileProcessedV2Event } from "../../schemas/event-file-processed-v2.js";
+import { samplePartnershipId } from "./event-transaction-processed-v2.js";
 
 export const sampleExecutionResourceUrl =
   "https://core.us.stedi.com/2023-08-01/executions/some-execution-id";
@@ -15,6 +16,8 @@ export const sampleFileProcessedV2Event = (): CoreFileProcessedV2Event => ({
   detail: {
     fileExecutionId: "12d584eb-3a19-42f3-99fa-5526f273d8dc",
     processedAt: "2023-08-12T00:00:00Z",
+    partnershipId: samplePartnershipId,
+    connectionId: "test-connection",
     artifacts: [
       {
         artifactType: "text/csv",

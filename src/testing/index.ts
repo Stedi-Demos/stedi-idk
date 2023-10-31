@@ -11,6 +11,7 @@ export * from "./fixtures/event-transaction-processed-v2.js";
 export * from "./fixtures/event-functional-group-processed.js";
 export * from "./fixtures/event-file-processed.js";
 export * from "./fixtures/event-file-processed-v2.js";
+export * from "./fixtures/event-fragment-processed-v2.js";
 export * from "./fixtures/event-file-failed.js";
 export * from "./fixtures/event-file-failed-v2.js";
 export * from "./fixtures/event-file-delivered.js";
