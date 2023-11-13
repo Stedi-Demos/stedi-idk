@@ -6,13 +6,6 @@ export const EventBaseTransactionV2Schema = z.strictObject({
   fileExecutionId: z.string(),
   transactionId: z.string(),
   processedAt: z.string(),
-  fragments: z
-    .strictObject({
-      batchSize: z.number(),
-      fragmentCount: z.number(),
-      keyName: z.string(),
-    })
-    .nullish(),
   partnership: z.strictObject({
     partnershipId: z.string(),
     partnershipType: z.literal("x12"),
