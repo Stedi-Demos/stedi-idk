@@ -36,11 +36,9 @@ export const CoreFileFailedV2EventSchema = EventHeaderSchema.extend({
         faultCode: z.string(),
       })
     ),
-    source: z
-      .strictObject({
-        name: z.string(),
-      })
-      .optional(),
+    source: z.strictObject({
+      name: z.string(),
+    }),
   }),
 });
 
