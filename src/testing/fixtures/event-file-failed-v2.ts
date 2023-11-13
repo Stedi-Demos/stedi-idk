@@ -28,5 +28,8 @@ export const sampleFileFailedV2Event = (): CoreFileFailedV2Event => ({
         faultCode: "UNKNOWN_ERROR",
       },
     ],
+    source: {
+      name: "input-file.edi",
+    },
   },
 });
