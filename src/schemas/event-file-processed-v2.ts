@@ -31,6 +31,11 @@ export const CoreFileProcessedV2EventSchema = EventHeaderSchema.extend({
         })
       )
       .min(1),
+    source: z
+      .strictObject({
+        name: z.string(),
+      })
+      .optional(),
   }),
 });
 

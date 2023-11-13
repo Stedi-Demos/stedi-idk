@@ -26,5 +26,8 @@ export const sampleFileProcessedV2Event = (): CoreFileProcessedV2Event => ({
         url: `${sampleExecutionResourceUrl}/input`,
       },
     ],
+    source: {
+      name: "input-file.edi",
+    },
   },
 });
