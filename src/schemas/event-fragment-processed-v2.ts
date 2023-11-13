@@ -15,6 +15,11 @@ export const CoreFragmentV2Schema = EventBaseTransactionV2Schema.extend({
       })
     )
     .length(1),
+  fragments: z.strictObject({
+    batchSize: z.number(),
+    fragmentCount: z.number(),
+    keyName: z.string(),
+  }),
 });
 
 export const CoreFragmentProcessedV2EventSchema = EventHeaderSchema.extend({
