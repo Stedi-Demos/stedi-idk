@@ -17,7 +17,7 @@ export const mappingsClient = (): MappingsClient => {
         "https://mappings.us.preproduction.stedi.com/2021-06-01";
     }
 
-    _mappingsClient = new MappingsClient(DEFAULT_SDK_CLIENT_PROPS);
+    _mappingsClient = new MappingsClient(config);
   }
 
   return _mappingsClient;
