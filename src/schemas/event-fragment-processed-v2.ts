@@ -6,16 +6,16 @@ export const CoreFragmentV2Schema = EventBaseTransactionV2Schema.extend({
   fragmentIndex: z.number(),
   artifacts: z
     .array(
-      z.strictObject({
-        artifactType: z.literal("application/json"),
-        usage: z.literal("output"),
+      z.object({
+        artifactType: z.literal("application/json").or(z.string()),
+        usage: z.literal("output").or(z.string()),
         sizeBytes: z.number().int(),
         url: z.string(),
-        model: z.literal("fragment"),
+        model: z.literal("fragment").or(z.string()),
       })
     )
     .length(1),
-  fragments: z.strictObject({
+  fragments: z.object({
     batchSize: z.number(),
     fragmentCount: z.number(),
     keyName: z.string(),

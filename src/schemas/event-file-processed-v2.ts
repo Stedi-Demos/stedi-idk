@@ -12,26 +12,28 @@ export const CoreFileProcessedV2EventSchema = EventHeaderSchema.extend({
     connectionId: z.string().optional(),
     artifacts: z
       .array(
-        z.strictObject({
-          artifactType: z.enum([
-            "application/edi-x12",
-            "application/edifact",
-            "application/filepart",
-            "application/json",
-            "application/xml",
-            "application/zip",
-            "text/csv",
-            "text/psv",
-            "text/tsv",
-            "UNKNOWN",
-          ]),
-          usage: z.enum(["input"]),
+        z.object({
+          artifactType: z
+            .enum([
+              "application/edi-x12",
+              "application/edifact",
+              "application/filepart",
+              "application/json",
+              "application/xml",
+              "application/zip",
+              "text/csv",
+              "text/psv",
+              "text/tsv",
+              "UNKNOWN",
+            ])
+            .or(z.string()),
+          usage: z.enum(["input"]).or(z.string()),
           sizeBytes: z.number().int(),
           url: z.string(),
         })
       )
       .min(1),
-    source: z.strictObject({
+    source: z.object({
       name: z.string(),
     }),
   }),
