@@ -5,17 +5,19 @@ import { EventBaseTransactionV2Schema } from "./partial/event-base-transaction-v
 export const CoreTransactionV2Schema = EventBaseTransactionV2Schema.extend({
   artifacts: z
     .array(
-      z.strictObject({
-        artifactType: z.enum(["application/edi-x12", "application/json"]),
-        usage: z.enum(["input", "output"]),
-        model: z.literal("transaction").optional(),
+      z.object({
+        artifactType: z
+          .enum(["application/edi-x12", "application/json"])
+          .or(z.string()),
+        usage: z.enum(["input", "output"]).or(z.string()),
+        model: z.literal("transaction").or(z.string()).optional(),
         sizeBytes: z.number().int(),
         url: z.string(),
       })
     )
     .min(2),
   fragments: z
-    .strictObject({
+    .object({
       batchSize: z.number(),
       fragmentCount: z.number(),
       keyName: z.string(),

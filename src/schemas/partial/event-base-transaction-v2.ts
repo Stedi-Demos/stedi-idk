@@ -1,45 +1,45 @@
 import * as z from "zod";
 
-export const EventBaseTransactionV2Schema = z.strictObject({
-  direction: z.enum(["INBOUND", "OUTBOUND"]),
-  mode: z.enum(["production", "test", "other"]),
+export const EventBaseTransactionV2Schema = z.object({
+  direction: z.enum(["INBOUND", "OUTBOUND"]).or(z.string()),
+  mode: z.enum(["production", "test", "other"]).or(z.string()),
   fileExecutionId: z.string(),
   transactionId: z.string(),
   processedAt: z.string(),
-  partnership: z.strictObject({
+  partnership: z.object({
     partnershipId: z.string(),
-    partnershipType: z.literal("x12"),
-    sender: z.strictObject({ profileId: z.string() }),
-    receiver: z.strictObject({ profileId: z.string() }),
+    partnershipType: z.literal("x12").or(z.string()),
+    sender: z.object({ profileId: z.string() }),
+    receiver: z.object({ profileId: z.string() }),
   }),
-  x12: z.strictObject({
-    metadata: z.strictObject({
-      interchange: z.strictObject({
+  x12: z.object({
+    metadata: z.object({
+      interchange: z.object({
         acknowledgmentRequestedCode: z.string(),
         controlNumber: z.number().int(),
       }),
-      functionalGroup: z.strictObject({
+      functionalGroup: z.object({
         controlNumber: z.number().int(),
         date: z.string(),
         release: z.string(),
         time: z.string(),
         functionalIdentifierCode: z.string(),
       }),
-      transaction: z.strictObject({
+      transaction: z.object({
         controlNumber: z.string(),
         transactionSetIdentifier: z.string(),
       }),
-      sender: z.strictObject({
+      sender: z.object({
         applicationCode: z.string(),
-        isa: z.strictObject({ qualifier: z.string(), id: z.string() }),
+        isa: z.object({ qualifier: z.string(), id: z.string() }),
       }),
-      receiver: z.strictObject({
+      receiver: z.object({
         applicationCode: z.string(),
-        isa: z.strictObject({ qualifier: z.string(), id: z.string() }),
+        isa: z.object({ qualifier: z.string(), id: z.string() }),
       }),
     }),
     transactionSetting: z
-      .strictObject({
+      .object({
         transactionSettingId: z.string().optional(),
         guideId: z.string().optional(),
       })

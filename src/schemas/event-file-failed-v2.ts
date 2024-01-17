@@ -8,35 +8,37 @@ export const CoreFileFailedV2EventSchema = EventHeaderSchema.extend({
   detail: z.object({
     fileExecutionId: z.string(),
     processedAt: z.string(),
-    direction: z.enum(["INBOUND", "OUTBOUND", "UNKNOWN"]),
+    direction: z.enum(["INBOUND", "OUTBOUND", "UNKNOWN"]).or(z.string()),
     artifacts: z
       .array(
-        z.strictObject({
-          artifactType: z.enum([
-            "application/edi-x12",
-            "application/edifact",
-            "application/filepart",
-            "application/json",
-            "application/xml",
-            "application/zip",
-            "text/csv",
-            "text/psv",
-            "text/tsv",
-            "UNKNOWN",
-          ]),
-          usage: z.enum(["input"]),
+        z.object({
+          artifactType: z
+            .enum([
+              "application/edi-x12",
+              "application/edifact",
+              "application/filepart",
+              "application/json",
+              "application/xml",
+              "application/zip",
+              "text/csv",
+              "text/psv",
+              "text/tsv",
+              "UNKNOWN",
+            ])
+            .or(z.string()),
+          usage: z.enum(["input"]).or(z.string()),
           sizeBytes: z.number().int(),
           url: z.string(),
         })
       )
       .min(1),
     errors: z.array(
-      z.strictObject({
+      z.object({
         message: z.string(),
         faultCode: z.string(),
       })
     ),
-    source: z.strictObject({
+    source: z.object({
       name: z.string(),
     }),
   }),
