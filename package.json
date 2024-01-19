@@ -25,7 +25,8 @@
   "exports": {
     ".": "./dist/index.js",
     "./testing": "./dist/testing/index.js",
-    "./clients": "./dist/clients/index.js"
+    "./clients": "./dist/clients/index.js",
+    "./plugins": "./dist/plugins/index.js"
   },
   "typesVersions": {
     "*": {
