@@ -43,7 +43,7 @@
   "devDependencies": {
     "@ava/typescript": "4.1.0",
     "@smithy/types": "1.2.0",
-    "@smithy/util-stream-node": "2.0.19",
+    "@smithy/util-stream-node": "2.1.0",
     "@stedi/sdk-client-as2": "0.4.61",
     "@stedi/sdk-client-buckets": "0.4.61",
     "@stedi/sdk-client-edi-translate": "0.4.61",
