@@ -55,13 +55,16 @@ const pkg = {
   },
 };
 
-export const packForDeployment = async (javascriptPath: string) => {
+export const packForDeployment = async (
+  javascriptPath: string,
+  packageJSON: object | undefined
+) => {
   const dir = `${os.tmpdir()}${path.sep}idk-deploy`;
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir);
   fs.writeFileSync(
     `${dir}${path.sep}package.json`,
-    JSON.stringify(pkg, null, 2)
+    JSON.stringify(packageJSON ?? pkg, null, 2)
   );
 
   const npm = process.platform === "win32" ? "npm.cmd" : "npm";
