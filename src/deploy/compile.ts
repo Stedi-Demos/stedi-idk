@@ -7,6 +7,7 @@ import path from "path";
 
 export const compile = async (
   buildPath: string,
+  externals: string[] = [],
   debug = false
 ): Promise<string> => {
   const searchValue = `${path.sep}src${path.sep}`;
@@ -35,7 +36,7 @@ export const compile = async (
       js: "import { createRequire } from 'module';const require = createRequire(import.meta.url);",
     },
     mainFields: ["module", "main"],
-    external: [],
+    external: externals,
   });
 
   if (debug) {
@@ -55,13 +56,16 @@ const pkg = {
   },
 };
 
-export const packForDeployment = async (javascriptPath: string) => {
+export const packForDeployment = async (
+  javascriptPath: string,
+  packageJSON: object | undefined
+) => {
   const dir = `${os.tmpdir()}${path.sep}idk-deploy`;
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir);
   fs.writeFileSync(
     `${dir}${path.sep}package.json`,
-    JSON.stringify(pkg, null, 2)
+    JSON.stringify(packageJSON ?? pkg, null, 2)
   );
 
   const npm = process.platform === "win32" ? "npm.cmd" : "npm";

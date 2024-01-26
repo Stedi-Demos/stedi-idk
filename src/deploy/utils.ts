@@ -6,17 +6,41 @@ interface ResourceFile {
   fileName?: string;
 }
 
-export const functionNameFromPath = (fnPath: string): string => {
+interface SimplePackageJSON {
+  dependencies: Record<string, string>;
+}
+
+export const getPackageJSON = (
+  pathName: string
+): undefined | SimplePackageJSON => {
+  const packagePath = path.join(pathName, "package.json");
+
+  if (fs.existsSync(packagePath)) {
+    return JSON.parse(
+      fs.readFileSync(packagePath, "utf-8")
+    ) as SimplePackageJSON;
+  }
+
+  return undefined;
+};
+
+export const splitFunctionNameAndPath = (
+  fnPath: string
+): { functionPath: string; functionName: string } => {
   // get function name excluding extension
   // path-a/path-b/path-never-ends/nice/function/handler.ts
   // => nice-function
-  const functionName = fnPath.split(path.sep).slice(-3, -1).join("-");
+  const pathParts = fnPath.split(path.sep);
+  let functionName = pathParts.slice(-3, -1).join("-");
 
   // path-a/functions/my-func/handler.ts
   // => my-func
-  if (functionName.startsWith("functions-")) return functionName.slice(10);
+  if (functionName.startsWith("functions-"))
+    functionName = functionName.slice(10);
 
-  return functionName;
+  const functionPath = pathParts.slice(0, -1).join(path.sep);
+
+  return { functionPath, functionName };
 };
 
 export const getFunctionPaths = (pathMatch?: string) => {

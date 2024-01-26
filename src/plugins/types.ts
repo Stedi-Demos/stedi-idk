@@ -24,4 +24,5 @@ export type StediPluginInvocationResult = StediPluginInvocationIdentifiers & {
   status: "SUCCESS" | "ERROR";
   output?: unknown[];
   logs?: StediPluginInvocationLog[];
+  state?: Record<string, unknown>;
 };

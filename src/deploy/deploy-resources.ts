@@ -1,7 +1,11 @@
 import dotenv from "dotenv";
 import { compile, packForDeployment } from "./compile.js";
 import { createFunction, updateFunction } from "./functions.js";
-import { functionNameFromPath, getFunctionPaths } from "./utils.js";
+import {
+  splitFunctionNameAndPath,
+  getFunctionPaths,
+  getPackageJSON,
+} from "./utils.js";
 import { waitUntilFunctionCreateComplete } from "@stedi/sdk-client-functions";
 
 import { functionsClient } from "../clients/functions.js";
@@ -53,13 +57,20 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
   const functionPaths = getFunctionPaths(pathMatch);
 
   const promises: Promise<unknown>[] = functionPaths.map(async (fnPath) => {
-    const functionName = functionNameFromPath(fnPath);
+    const { functionPath, functionName } = splitFunctionNaneAndPath(fnPath);
 
     console.log(`Deploying ${functionName}`);
 
+    // check if the function has a package.json
+    const packageJSON = getPackageJSON(functionPath);
+    // exclude any dependencies as they will be bundled into zip separately
+    const externals =
+      packageJSON !== undefined ? Object.keys(packageJSON.dependencies) : [];
+
     // compiling function code
-    const jsPath = await compile(fnPath);
-    const code = await packForDeployment(jsPath);
+    const jsPath = await compile(fnPath, externals, false);
+
+    const code = await packForDeployment(jsPath, packageJSON);
 
     // deploying functions
     try {
