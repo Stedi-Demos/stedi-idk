@@ -16,19 +16,15 @@ export const getPackageJSON = (
   const packagePath = path.join(pathName, "package.json");
 
   if (fs.existsSync(packagePath)) {
-    try {
-      return JSON.parse(
-        fs.readFileSync(packagePath, "utf-8")
-      ) as SimplePackageJSON;
-    } catch (err) {
-      // swallow the error, a package.json is optional
-    }
+    return JSON.parse(
+      fs.readFileSync(packagePath, "utf-8")
+    ) as SimplePackageJSON;
   }
 
   return undefined;
 };
 
-export const splitFunctionNaneAndPath = (
+export const splitFunctionNameAndPath = (
   fnPath: string
 ): { functionPath: string; functionName: string } => {
   // get function name excluding extension

@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { compile, packForDeployment } from "./compile.js";
 import { createFunction, updateFunction } from "./functions.js";
 import {
-  splitFunctionNaneAndPath,
+  splitFunctionNameAndPath,
   getFunctionPaths,
   getPackageJSON,
 } from "./utils.js";
@@ -63,7 +63,7 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
 
     // check if the function has a package.json
     const packageJSON = getPackageJSON(functionPath);
-    // exclude any dependencies they will be bundled into zip separately
+    // exclude any dependencies as they will be bundled into zip separately
     const externals =
       packageJSON !== undefined ? Object.keys(packageJSON.dependencies) : [];
 
