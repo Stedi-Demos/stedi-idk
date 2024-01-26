@@ -3,11 +3,17 @@ import {
   StediPluginInvocationResult,
 } from "../types.js";
 
-export const failureResponse = (
-  invocationIds: StediPluginInvocationIdentifiers,
-  message: string,
-  details?: Record<string, unknown>
-): StediPluginInvocationResult => {
+interface FailureResponseParams {
+  invocationIds: StediPluginInvocationIdentifiers;
+  message: string;
+  details?: Record<string, unknown>;
+}
+
+export const failureResponse = ({
+  invocationIds,
+  message,
+  details,
+}: FailureResponseParams): StediPluginInvocationResult => {
   return {
     invocationId: invocationIds.invocationId,
     namespace: invocationIds.namespace,

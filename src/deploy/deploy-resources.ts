@@ -61,10 +61,14 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
 
     console.log(`Deploying ${functionName}`);
 
-    // compiling function code
-    const jsPath = await compile(fnPath);
-
+    // check if the function has a package.json
     const packageJSON = getPackageJSON(functionPath);
+    // exclude any dependencies they will be bundled into zip separately
+    const externals =
+      packageJSON !== undefined ? Object.keys(packageJSON.dependencies) : [];
+
+    // compiling function code
+    const jsPath = await compile(fnPath, externals, false);
 
     const code = await packForDeployment(jsPath, packageJSON);
 

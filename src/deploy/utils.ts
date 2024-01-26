@@ -6,12 +6,20 @@ interface ResourceFile {
   fileName?: string;
 }
 
-export const getPackageJSON = (pathName: string): undefined | object => {
+interface SimplePackageJSON {
+  dependencies: Record<string, string>;
+}
+
+export const getPackageJSON = (
+  pathName: string
+): undefined | SimplePackageJSON => {
   const packagePath = path.join(pathName, "package.json");
 
   if (fs.existsSync(packagePath)) {
     try {
-      return JSON.parse(fs.readFileSync(packagePath, "utf-8")) as object;
+      return JSON.parse(
+        fs.readFileSync(packagePath, "utf-8")
+      ) as SimplePackageJSON;
     } catch (err) {
       // swallow the error, a package.json is optional
     }

@@ -7,6 +7,7 @@ import path from "path";
 
 export const compile = async (
   buildPath: string,
+  externals: string[] = [],
   debug = false
 ): Promise<string> => {
   const searchValue = `${path.sep}src${path.sep}`;
@@ -35,7 +36,7 @@ export const compile = async (
       js: "import { createRequire } from 'module';const require = createRequire(import.meta.url);",
     },
     mainFields: ["module", "main"],
-    external: [],
+    external: externals,
   });
 
   if (debug) {
