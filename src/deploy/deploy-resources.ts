@@ -57,7 +57,7 @@ You can generate a new API key here: https://www.stedi.com/app/settings/api-keys
   const functionPaths = getFunctionPaths(pathMatch);
 
   const promises: Promise<unknown>[] = functionPaths.map(async (fnPath) => {
-    const { functionPath, functionName } = splitFunctionNaneAndPath(fnPath);
+    const { functionPath, functionName } = splitFunctionNameAndPath(fnPath);
 
     console.log(`Deploying ${functionName}`);
 
