@@ -78,7 +78,7 @@
     "prettier": "2.8.8",
     "ts-node": "10.9.2",
     "typescript": "5.3.3",
-    "undici": "5.28.2",
+    "undici": "5.28.3",
     "yargs": "17.7.2",
     "zod": "3.22.4"
   },
