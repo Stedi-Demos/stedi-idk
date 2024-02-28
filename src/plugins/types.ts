@@ -17,7 +17,6 @@ export interface StediPluginInvocationLog {
   level: "INFO" | "WARN" | "ERROR";
   message: string;
   details?: unknown;
-  errors?: unknown;
 }
 
 export type StediPluginInvocationResult = StediPluginInvocationIdentifiers & {
