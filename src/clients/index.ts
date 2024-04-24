@@ -1,5 +1,6 @@
 export * from "./as2.js";
 export * from "./buckets.js";
+export * from "./events.js";
 export * from "./functions.js";
 export * from "./guides.js";
 export * from "./mappings.js";
