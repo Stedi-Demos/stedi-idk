@@ -80,7 +80,7 @@
     "typescript": "5.4.5",
     "undici": "5.28.4",
     "yargs": "17.7.2",
-    "zod": "3.22.4"
+    "zod": "3.22.5"
   },
   "prettier": {
     "useTabs": false
