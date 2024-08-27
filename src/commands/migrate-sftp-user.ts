@@ -1,6 +1,3 @@
-import { partnersClient, sftpClient } from "../clients/index.js";
-import { UpdateUserCommand } from "@stedi/sdk-client-sftp";
-import { CreateStediFtpConnectionCommand } from "@stedi/sdk-client-partners";
 import { resolveAccountId } from "../common/resolve-account-id.js";
 
 export const command =
@@ -16,6 +13,13 @@ export const handler = async (argv: {
   inboundDirectory?: string;
   outboundDirectory?: string;
 }) => {
+  const { sftpClient } = await import("../clients/sftp.js");
+  const { partnersClient } = await import("../clients/partners.js");
+  const { UpdateUserCommand } = await import("@stedi/sdk-client-sftp");
+  const { CreateStediFtpConnectionCommand } = await import(
+    "@stedi/sdk-client-partners"
+  );
+
   const stediAccountId = await resolveAccountId();
   const sftpUsername = argv.sftpUsername;
   const partnershipId = argv.partnershipId;

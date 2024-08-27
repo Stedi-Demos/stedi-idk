@@ -1,6 +1,6 @@
 {
   "name": "@stedi/integrations-sdk",
-  "version": "0.1.44",
+  "version": "0.2.00",
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
@@ -26,6 +26,18 @@
     ".": "./dist/index.js",
     "./testing": "./dist/testing/index.js",
     "./clients": "./dist/clients/index.js",
+    "./clients/as2": "./dist/clients/as2.js",
+    "./clients/buckets": "./dist/clients/buckets.js",
+    "./clients/core": "./dist/clients/core.js",
+    "./clients/events": "./dist/clients/events.js",
+    "./clients/functions": "./dist/clients/functions.js",
+    "./clients/mappings": "./dist/clients/mappings.js",
+    "./clients/guides": "./dist/clients/guides.js",
+    "./clients/partners": "./dist/clients/partners.js",
+    "./clients/queues": "./dist/clients/queues.js",
+    "./clients/sftp": "./dist/clients/sftp.js",
+    "./clients/stash": "./dist/clients/stash.js",
+    "./clients/translate": "./dist/clients/translate.js",
     "./plugins": "./dist/plugins/index.js"
   },
   "typesVersions": {
@@ -46,6 +58,7 @@
     "@smithy/util-stream-node": "2.2.0",
     "@stedi/sdk-client-as2": "0.4.78",
     "@stedi/sdk-client-buckets": "0.4.78",
+    "@stedi/sdk-client-core": "0.1.0-pre.0-10569624612-7220728",
     "@stedi/sdk-client-edi-translate": "0.4.78",
     "@stedi/sdk-client-events": "0.4.78",
     "@stedi/sdk-client-functions": "0.4.78",
