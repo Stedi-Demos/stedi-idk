@@ -1,6 +1,6 @@
 {
   "name": "@stedi/integrations-sdk",
-  "version": "0.2.00",
+  "version": "0.2.0",
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
