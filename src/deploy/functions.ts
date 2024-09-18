@@ -1,4 +1,3 @@
-import { DocumentType } from "@aws-sdk/types";
 import { PutObjectCommand } from "@stedi/sdk-client-buckets";
 import {
   CreateFunctionCommand,
@@ -10,11 +9,6 @@ import {
 } from "@stedi/sdk-client-functions";
 import { bucketsClient } from "../clients/buckets.js";
 import { functionsClient } from "../clients/functions.js";
-import {
-  CreateEventToFunctionBindingCommand,
-  UpdateEventToFunctionBindingCommand,
-} from "@stedi/sdk-client-events";
-import { eventsClient } from "../clients/events.js";
 
 const sharedPackageBucketName =
   process.env.USE_PREVIEW === undefined
@@ -86,34 +80,6 @@ export const deleteFunction = async (
   return functionsClient().send(
     new DeleteFunctionCommand({
       functionName,
-    })
-  );
-};
-
-export const createFunctionEventBinding = async (
-  functionName: string,
-  eventPattern: DocumentType,
-  eventToFunctionBindingName: string
-) => {
-  return eventsClient().send(
-    new CreateEventToFunctionBindingCommand({
-      eventPattern,
-      functionName,
-      eventToFunctionBindingName,
-    })
-  );
-};
-
-export const updateFunctionEventBinding = async (
-  functionName: string,
-  eventPattern: DocumentType,
-  eventToFunctionBindingName: string
-) => {
-  return eventsClient().send(
-    new UpdateEventToFunctionBindingCommand({
-      eventPattern,
-      functionName,
-      eventToFunctionBindingName,
     })
   );
 };
