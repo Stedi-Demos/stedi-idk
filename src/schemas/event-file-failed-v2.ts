@@ -32,6 +32,14 @@ export const CoreFileFailedV2EventSchema = EventHeaderSchema.extend({
         })
       )
       .min(1),
+    partnership: z
+      .object({
+        partnershipId: z.string(),
+        partnershipType: z.literal("x12").or(z.string()),
+        sender: z.object({ profileId: z.string() }),
+        receiver: z.object({ profileId: z.string() }),
+      })
+      .optional(),
     errors: z.array(
       z.object({
         message: z.string(),
@@ -41,6 +49,22 @@ export const CoreFileFailedV2EventSchema = EventHeaderSchema.extend({
     source: z.object({
       name: z.string(),
     }),
+    x12: z
+      .object({
+        metadata: z.object({
+          interchange: z.object({
+            acknowledgmentRequestedCode: z.string(),
+            controlNumber: z.number().int(),
+          }),
+          sender: z.object({
+            isa: z.object({ qualifier: z.string(), id: z.string() }),
+          }),
+          receiver: z.object({
+            isa: z.object({ qualifier: z.string(), id: z.string() }),
+          }),
+        }),
+      })
+      .optional(),
   }),
 });
 
